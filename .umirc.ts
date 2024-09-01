@@ -20,7 +20,8 @@ export default defineConfig({
     {
       name: 'home',
       path: '/home',
-      component: './Home',
+      redirect: '/tools/remove-bg',
+      // component: './Home',
     },
     // {
     //   name: 'start',
