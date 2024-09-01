@@ -37,6 +37,7 @@ export default defineConfig({
       name: 'remove-bg',
       path: '/tools/remove-bg',
       component: './Tools/RemoveBg',
+      wrappers: ['@/wrappers/auth-routes'],
     },
     {
       name: 'login',

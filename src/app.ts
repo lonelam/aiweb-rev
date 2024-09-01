@@ -1,6 +1,7 @@
 // 运行时配置
 
-import { RequestConfig } from '@umijs/max';
+import { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
+import { RightRender } from './components/Layout/rightRender';
 import { auth } from './store/auth';
 import { getAuthHeaders } from './store/auth/state';
 
@@ -12,17 +13,13 @@ export async function getInitialState(): Promise<{ name: string }> {
   return { name: user?.userName || '未登录' };
 }
 
-export const layout = () => {
+export const layout: RunTimeLayoutConfig = () => {
   return {
     logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
     menu: {
       locale: true,
     },
-    logout: auth.state.isLogin
-      ? () => {
-          auth.actions.logoutAndClearAccessToken();
-        }
-      : null,
+    rightRender: RightRender,
   };
 };
 
