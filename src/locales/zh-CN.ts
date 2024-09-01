@@ -3,6 +3,8 @@ export default {
   menu: {
     title: 'AI工具箱',
     home: '首页',
+    dev: '开发用',
+    ['remove-bg']: 'AI背景消除',
   },
   'email-placeholder': '电子邮件',
   email: '电子邮件',

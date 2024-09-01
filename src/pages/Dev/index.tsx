@@ -1,9 +1,9 @@
+import RemoveBg from '@/components/tools/RemoveBg';
 import { request } from '@umijs/max';
 import { Button } from 'antd';
 import * as React from 'react';
 
-export function DevPage() {
-  const [debugValue, setDebugValue] = React.useState('');
+export default function DevPage() {
   const handleDebug = React.useCallback(async () => {
     const automaticMaskResp = await request(
       'http://asdkfj.oss-cn-hangzhou.aliyuncs.com/3_1685010403144_automatic_masks',
@@ -11,13 +11,12 @@ export function DevPage() {
     const maskCountsString = automaticMaskResp.data[0].segmentation.counts;
     const output = '';
     console.log(output, maskCountsString);
-    setDebugValue(output);
   }, []);
   return (
     <div>
       <Button onClick={handleDebug}>debug</Button>
       <div>
-        <div>{debugValue}</div>
+        <RemoveBg />
       </div>
     </div>
   );

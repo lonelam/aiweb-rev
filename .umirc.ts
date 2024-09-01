@@ -15,7 +15,7 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/home',
     },
     {
       name: 'home',
@@ -33,11 +33,11 @@ export default defineConfig({
     //   component: './Admin',
     //   access: 'admin',
     // },
-    // {
-    //   name: ' CRUD 示例',
-    //   path: '/table',
-    //   component: './Table',
-    // },
+    {
+      name: 'remove-bg',
+      path: '/tools/remove-bg',
+      component: './Tools/RemoveBg',
+    },
     {
       name: 'login',
       path: '/login',
@@ -67,6 +67,7 @@ export default defineConfig({
     '/api': {
       target: 'https://aiweb.laizn.com/',
       changeOrigin: true,
+      verbose: true,
     },
   },
   tailwindcss: {},

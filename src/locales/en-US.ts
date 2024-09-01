@@ -3,6 +3,8 @@ export default {
   menu: {
     title: 'The AI Toolbox',
     home: 'Home',
+    dev: 'Development',
+    ['remove-bg']: 'AI Remove BG',
   },
   'email-placeholder': 'E-mail',
   email: 'E-mail',
