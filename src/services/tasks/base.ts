@@ -10,3 +10,12 @@ export async function postTaskCreate(task: API.ICreateTaskParams) {
 export async function getTask(taskId: number) {
   return request(`/task/${taskId}`);
 }
+
+export async function postTaskBatchFetch(
+  data: API.IBatchFetchTasksParams,
+): Promise<{ tasks: API.IPublicTask[] }> {
+  return request('/task/batch_fetch', {
+    method: 'POST',
+    data,
+  });
+}

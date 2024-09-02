@@ -72,11 +72,18 @@ export default defineConfig({
     baseSeparator: '-',
   },
   proxy: {
-    '/api': {
-      target: 'https://aiweb.laizn.com/',
-      changeOrigin: true,
-      verbose: true,
-    },
+    '/api':
+      process.env.NODE_ENV === 'development'
+        ? {
+            target: 'http://localhost:3000/',
+            changeOrigin: true,
+            verbose: true,
+          }
+        : {
+            target: 'https://aiweb.laizn.com/',
+            changeOrigin: true,
+            verbose: true,
+          },
   },
   tailwindcss: {},
 });

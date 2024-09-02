@@ -1,2 +1,2 @@
-export { getTask } from './base';
+export { getTask, postTaskBatchFetch } from './base';
 export { createRemoveBackgroundTask } from './remove-bg';

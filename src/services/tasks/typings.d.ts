@@ -30,6 +30,10 @@ declare namespace API {
     name: string;
   }
 
+  export interface IBatchFetchTasksParams {
+    taskIds: number[];
+  }
+
   export type IPublicTemplateMeta = {
     image: string;
     description: string;

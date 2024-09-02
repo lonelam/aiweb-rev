@@ -3,12 +3,13 @@
   "author": "laizenan <laizenan@gmail.com>",
   "scripts": {
     "build": "max build",
-    "dev": "PORT=3000 max dev",
+    "dev": "PORT=8000 NODE_ENV='development' max dev",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "prepare": "husky",
     "setup": "max setup",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "test": "PORT=8000 max dev"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",

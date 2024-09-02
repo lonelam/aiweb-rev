@@ -1,7 +1,8 @@
-import { createRemoveBackgroundTask, getTask } from '@/services/tasks';
-import { useRequest } from '@umijs/max';
+import { createRemoveBackgroundTask } from '@/services/tasks';
+import { task } from '@/store/task';
+import { derive, useRequest, useSnapshot } from '@umijs/max';
 import { Card, Col, Image, Row, Spin, UploadFile } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export interface ITaskListProps {
   uploadedFileList: UploadFile<any>[];
@@ -10,32 +11,8 @@ export interface ITaskListProps {
 const RemoveBgTaskList = (props: ITaskListProps) => {
   const { uploadedFileList } = props;
   const [currentTask, setCurrentTask] = useState<API.IPublicTask | null>(null);
-  const [taskList, setTaskList] = useState<API.IPublicTask[]>([]);
+  const [taskIds, setTaskIds] = useState<number[]>([]);
 
-  // Function to fetch updated task status
-  const fetchTaskStatus = async () => {
-    if (taskList.length > 0) {
-      const updatedTasks = await Promise.all(
-        taskList.map(async (task) => {
-          if (task.status === 'success' || task.status === 'failed') {
-            return task;
-          }
-          const updatedTask = await getTask(task.id); // Assuming getTask(id) fetches task status by ID
-          return updatedTask;
-        }),
-      );
-      setTaskList(updatedTasks);
-
-      // Update current task if it's still in progress or not the one currently selected
-      if (currentTask && updatedTasks.some((t) => t.id === currentTask.id)) {
-        setCurrentTask(
-          updatedTasks.find((t) => t.id === currentTask.id) || null,
-        );
-      }
-    }
-  };
-
-  console.warn(`the task list is now`, taskList);
   const { loading, data: createdTaskList } = useRequest<{
     data: API.IPublicTask[];
   }>(async () => {
@@ -50,14 +27,36 @@ const RemoveBgTaskList = (props: ITaskListProps) => {
     return { data: combinedResponse };
   });
 
+  const taskListInState = useMemo(() => {
+    return derive({
+      taskList: (get) => {
+        const { resolvedTasks, pendingTasks } = get(task.state);
+        return taskIds.map((tid) => {
+          if (resolvedTasks.has(tid)) {
+            return resolvedTasks.get(tid);
+          }
+          if (pendingTasks.has(tid)) {
+            return pendingTasks.get(tid);
+          }
+          return createdTaskList?.find((t) => t.id === tid);
+        }) as API.IPublicTask[];
+      },
+    });
+  }, []);
+
+  const { taskList } = useSnapshot(taskListInState);
+
   // Set initial task to the first one
   useEffect(() => {
     if (createdTaskList && createdTaskList.length > 0) {
-      setCurrentTask(createdTaskList[0]);
-      setTaskList(createdTaskList);
+      task.actions.appendNewCreatedTasks(createdTaskList);
+      setTaskIds(createdTaskList.map((t) => t.id));
 
       // Start polling every 5 seconds
-      const pollingInterval = setInterval(fetchTaskStatus, 1000);
+      const pollingInterval = setInterval(
+        task.actions.batchFetchPendingTasks,
+        1000,
+      );
 
       // Cleanup polling on component unmount
       return () => clearInterval(pollingInterval);
