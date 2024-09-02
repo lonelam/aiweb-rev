@@ -47,10 +47,15 @@ export default {
   username: '用户名',
   'change-role': '更改角色',
   'password-is-required': '密码是必需的',
-  'password-is-not-strong': '密码不够强',
+  'password-is-not-strong':
+    '密码不够强, 必须包含 8字符，1大写，1小写，1数字，1符号, 最好用密码保管器生成一个',
   status: '状态',
   data: '数据',
   'result-data': '结果数据',
   'add-mask': '添加遮罩',
   'remove-area': '移除区域',
+  'first-name': '名字',
+  'last-name': '姓氏',
+  'user-name': '用户名',
+  'go-login-sentence': '已经有账号？{link1}',
 };

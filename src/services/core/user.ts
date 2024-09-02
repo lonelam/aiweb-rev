@@ -14,3 +14,10 @@ export const PublicUserPlaceholder: API.IPublicUser = {
 export async function getUserInfo(): Promise<API.IPublicUser> {
   return request('/user/profile');
 }
+
+export async function postAuthRegister(data: API.IRegisterUser) {
+  return request('/user/register', {
+    method: 'POST',
+    data,
+  });
+}

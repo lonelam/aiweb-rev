@@ -20,4 +20,12 @@ declare namespace API {
   export type IAccessToken = {
     accessToken: string;
   };
+
+  export type IRegisterUser = {
+    firstName: string;
+    lastName: string;
+    userName: string;
+    email: string;
+    password: string;
+  };
 }

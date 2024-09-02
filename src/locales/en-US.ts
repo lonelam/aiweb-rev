@@ -53,4 +53,8 @@ export default {
   'result-data': 'Result Data',
   'add-mask': 'Add Mask',
   'remove-area': 'Remove Area',
+  'first-name': 'First Name',
+  'last-name': 'Last Name',
+  'user-name': 'Username',
+  'go-login-sentence': 'Already have an account? {link1}',
 };

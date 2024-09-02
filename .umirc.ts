@@ -46,6 +46,12 @@ export default defineConfig({
       component: './Login',
       layout: false,
     },
+    {
+      name: 'register',
+      path: '/register',
+      component: './Register',
+      layout: false,
+    },
     process.env.NODE_ENV === 'development'
       ? {
           name: 'dev',
