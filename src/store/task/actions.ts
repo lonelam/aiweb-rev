@@ -17,6 +17,9 @@ export const actions = {
   },
   async batchFetchPendingTasks() {
     const taskIds = Array.from(state.pendingTasks.keys());
+    if (!taskIds.length) {
+      return;
+    }
     const { tasks: latestTasks } = await postTaskBatchFetch({ taskIds });
     latestTasks.forEach((t) => {
       if (t.status === 'success') {

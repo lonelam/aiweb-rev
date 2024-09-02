@@ -10,7 +10,7 @@ export interface ITaskListProps {
 
 const RemoveBgTaskList = (props: ITaskListProps) => {
   const { uploadedFileList } = props;
-  const [currentTask, setCurrentTask] = useState<API.IPublicTask | null>(null);
+  const [currentTask, setCurrentTask] = useState<number | null>(null);
   const [taskIds, setTaskIds] = useState<number[]>([]);
 
   const { loading, data: createdTaskList } = useRequest<{
@@ -42,13 +42,14 @@ const RemoveBgTaskList = (props: ITaskListProps) => {
         }) as API.IPublicTask[];
       },
     });
-  }, []);
+  }, [taskIds]);
 
   const { taskList } = useSnapshot(taskListInState);
 
   // Set initial task to the first one
   useEffect(() => {
     if (createdTaskList && createdTaskList.length > 0) {
+      setCurrentTask(0);
       task.actions.appendNewCreatedTasks(createdTaskList);
       setTaskIds(createdTaskList.map((t) => t.id));
 
@@ -74,10 +75,10 @@ const RemoveBgTaskList = (props: ITaskListProps) => {
         className="min-h-[50vh] flex justify-center items-center"
         style={{ marginBottom: '16px', textAlign: 'center' }}
       >
-        {currentTask ? (
-          currentTask.status === 'success' ? (
+        {currentTask !== null ? (
+          taskList[currentTask].status === 'success' ? (
             <Image
-              src={JSON.stringify(currentTask.resultData)}
+              src={JSON.stringify(taskList[currentTask].resultData)}
               alt="Current Preview"
               width="80%"
               height="auto"
@@ -115,7 +116,7 @@ const RemoveBgTaskList = (props: ITaskListProps) => {
                   display: 'inline-block',
                   cursor: 'pointer',
                 }}
-                onClick={() => setCurrentTask(task)}
+                onClick={() => setCurrentTask(index)}
                 cover={
                   task.status === 'success' ? (
                     <Image

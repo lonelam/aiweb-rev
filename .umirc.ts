@@ -73,7 +73,7 @@ export default defineConfig({
   },
   proxy: {
     '/api':
-      process.env.NODE_ENV === 'development'
+      process.env.API_ENV === 'local'
         ? {
             target: 'http://localhost:3000/',
             changeOrigin: true,
