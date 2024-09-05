@@ -45,6 +45,9 @@ importers:
       '@unocss/preset-uno':
         specifier: ^0.62.3
         version: 0.62.3
+      chalk:
+        specifier: ^4.1.2
+        version: 4.1.2
       husky:
         specifier: ^9
         version: 9.1.5

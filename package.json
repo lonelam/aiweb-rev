@@ -26,6 +26,7 @@
     "@types/validator": "^13.12.1",
     "@umijs/plugins": "^4.3.17",
     "@unocss/preset-uno": "^0.62.3",
+    "chalk": "^4.1.2",
     "husky": "^9",
     "lint-staged": "^13.2.0",
     "prettier": "^3.3.3",

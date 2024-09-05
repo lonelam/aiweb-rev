@@ -1,6 +1,7 @@
 import { Button, Col, Row, Typography, UploadFile } from 'antd';
 import { useCallback, useState } from 'react';
-import RemoveBgTaskList from './remove-bg-task-list';
+import CreatingTasks from './CreatingTasks';
+import RemoveBgTaskList from './RemoveBgTaskList';
 import RetouchSvg from './retouch.svg';
 import ImageUploader from './uploader';
 const { Title, Paragraph } = Typography;
@@ -10,8 +11,15 @@ const RemoveBg = () => {
   const [uploadedFileList, setUploadedFileList] = useState<UploadFile<any>[]>(
     [],
   );
+  const [taskIds, setTaskIdsState] = useState<number[]>([]);
+
   const handleUploadFinish = useCallback((fileList: UploadFile<any>[]) => {
     setUploadedFileList(fileList);
+    setCurrentOperation('creating');
+  }, []);
+
+  const setTaskIds = useCallback((newTaskIds: number[]) => {
+    setTaskIdsState(newTaskIds);
     setCurrentOperation('waiting');
   }, []);
 
@@ -66,9 +74,15 @@ const RemoveBg = () => {
             </Col>
           </>
         )}
+        {currentOperation === 'creating' && (
+          <CreatingTasks
+            uploadedFileList={uploadedFileList}
+            setTaskIds={setTaskIds}
+          />
+        )}
         {currentOperation === 'waiting' && (
           <Col xs={24} md={18} lg={12} className="text-center">
-            <RemoveBgTaskList uploadedFileList={uploadedFileList} />
+            <RemoveBgTaskList taskIds={taskIds} />
           </Col>
         )}
       </Row>

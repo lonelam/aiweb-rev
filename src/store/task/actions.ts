@@ -31,5 +31,19 @@ export const actions = {
         state.pendingTasks.set(t.id, t);
       }
     });
+    if (state.isPollingTasks) {
+      setTimeout(() => {
+        if (state.isPollingTasks) {
+          actions.batchFetchPendingTasks();
+        }
+      }, 500);
+    }
+  },
+  async startPollingTasks() {
+    state.isPollingTasks = true;
+    actions.batchFetchPendingTasks();
+  },
+  async stopPollingTasks() {
+    state.isPollingTasks = false;
   },
 };

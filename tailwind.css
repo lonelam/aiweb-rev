@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .bg-transparent-mosaic {
+    background-image: linear-gradient(
+        45deg,
+        #ccc 25%,
+        transparent 25%,
+        transparent 75%,
+        #ccc 75%,
+        #ccc
+      ),
+      linear-gradient(
+        45deg,
+        #ccc 25%,
+        transparent 25%,
+        transparent 75%,
+        #ccc 75%,
+        #ccc
+      );
+    background-size: 20px 20px;
+    background-position:
+      0 0,
+      10px 10px;
+  }
+}

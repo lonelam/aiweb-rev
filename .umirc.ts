@@ -1,4 +1,5 @@
 import { defineConfig } from '@umijs/max';
+import * as chalk from 'chalk';
 
 export default defineConfig({
   antd: {},
@@ -83,7 +84,19 @@ export default defineConfig({
             target: 'https://aiweb.laizn.com/',
             changeOrigin: true,
             verbose: true,
+            bypass: (req, resp, options) => {
+              console.log(
+                chalk.gray(
+                  `Proxying ${chalk.white(req.method)} ${chalk.blue(req.url)} to ${chalk.blueBright(options.target)}: ${resp.statusCode === 200 ? chalk.greenBright(JSON.stringify(resp.statusCode)) : chalk.yellowBright(resp.statusCode)}`,
+                ),
+              );
+              return null;
+            },
           },
   },
   tailwindcss: {},
+  analytics: {
+    baidu: 'aa4edda23a24c2a31b43ac8101f0c405',
+    ga_v2: 'G-KG8DE7YLDH',
+  },
 });
