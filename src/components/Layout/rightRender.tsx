@@ -1,9 +1,9 @@
 import { auth } from '@/store/auth';
 import { user } from '@/store/user';
 import { SelectLang } from '@@/plugin-locale';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate, useSnapshot } from '@umijs/max';
 import { Avatar, Dropdown, Menu, version } from 'antd';
-import { LogoutOutlined } from '/home/laizn/aiweb-rev/node_modules/.pnpm/@ant-design+icons@4.8.3_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/@ant-design/icons';
 
 export function RightRender(
   initialState: any,

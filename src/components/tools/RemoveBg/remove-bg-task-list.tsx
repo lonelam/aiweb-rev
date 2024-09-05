@@ -78,7 +78,7 @@ const RemoveBgTaskList = (props: ITaskListProps) => {
         {currentTask !== null ? (
           taskList[currentTask].status === 'success' ? (
             <Image
-              src={JSON.stringify(taskList[currentTask].resultData)}
+              src={JSON.parse(taskList[currentTask].resultData).image}
               alt="Current Preview"
               width="80%"
               height="auto"
