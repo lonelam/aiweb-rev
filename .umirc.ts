@@ -60,6 +60,11 @@ export default defineConfig({
       wrappers: ['@/wrappers/auth-routes'],
     },
     {
+      name: 'business-shot',
+      path: 'business-shot',
+      component: './BusinessShot',
+    },
+    {
       name: 'login',
       path: '/login',
       component: './Login',

@@ -8,6 +8,7 @@ export default {
     ['fast-clearify']: 'AI变清晰',
     ['fast-expand']: 'AI扩图',
     ['fast-remove-obj']: 'AI移除物体',
+    ['business-shot']: 'AI商拍',
   },
   'email-placeholder': '电子邮件',
   email: '电子邮件',
