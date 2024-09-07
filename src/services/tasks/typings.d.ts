@@ -57,12 +57,46 @@ declare namespace API {
   > &
     Partial<Pick<IPublicTemplate, 'id'>>;
 
-  export interface IRemoveBgData {
+  export interface IBaseImageData {
+    image: string;
+  }
+
+  export interface IBasePromptData {
+    prompt: string;
+  }
+
+  export interface IRemoveBgData extends IBaseImageData, IBasePromptData {
+    prompt: string;
+  }
+
+  export interface IRmoveBgResultData extends IBaseImageData {
+    image: string;
+  }
+
+  export interface IFastClearifyData extends IBaseImageData, IBasePromptData {
     image: string;
     prompt: string;
   }
 
-  export interface IRmoveBgResultData {
+  export interface IFastClearifyResultData extends IBaseImageData {
+    image: string;
+  }
+
+  export interface IFastExpandData extends IBaseImageData, IBasePromptData {
+    image: string;
+    prompt: string;
+  }
+
+  export interface IFastExpandResultData extends IBaseImageData {
+    image: string;
+  }
+
+  export interface IFastRemoveObjData extends IBaseImageData, IBasePromptData {
+    image: string;
+    prompt: string;
+  }
+
+  export interface IFastRemoveObjResultData extends IBaseImageData {
     image: string;
   }
 }

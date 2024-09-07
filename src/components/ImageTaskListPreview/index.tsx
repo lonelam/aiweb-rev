@@ -8,7 +8,7 @@ export interface ITaskListProps {
   taskIds: number[];
 }
 
-const RemoveBgTaskList = (props: ITaskListProps) => {
+const ImageTaskListPreview = (props: ITaskListProps) => {
   const { taskIds } = props;
   const [currentTask, setCurrentTask] = useState<number>(0);
   const taskListInState = useMemo(() => {
@@ -117,4 +117,4 @@ const RemoveBgTaskList = (props: ITaskListProps) => {
   );
 };
 
-export default RemoveBgTaskList;
+export default ImageTaskListPreview;

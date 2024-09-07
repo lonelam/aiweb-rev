@@ -42,6 +42,24 @@ export default defineConfig({
       wrappers: ['@/wrappers/auth-routes'],
     },
     {
+      name: 'fast-clearify',
+      path: '/tools/fast-clearify',
+      component: './Tools/FastClearify',
+      wrappers: ['@/wrappers/auth-routes'],
+    },
+    {
+      name: 'fast-expand',
+      path: '/tools/fast-expand',
+      component: './Tools/FastExpand',
+      wrappers: ['@/wrappers/auth-routes'],
+    },
+    {
+      name: 'fast-remove-obj',
+      path: '/tools/fast-remove-obj',
+      component: './Tools/FastRemoveObj',
+      wrappers: ['@/wrappers/auth-routes'],
+    },
+    {
       name: 'login',
       path: '/login',
       component: './Login',

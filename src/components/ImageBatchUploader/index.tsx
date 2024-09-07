@@ -7,7 +7,7 @@ const { Paragraph } = Typography;
 export interface IImageUploaderProps {
   onUploadFinish: (fileList: UploadFile<any>[]) => void;
 }
-const ImageUploader = (props: IImageUploaderProps) => {
+const ImageBatchUploader = (props: IImageUploaderProps) => {
   const { onUploadFinish } = props;
   const uploadProps: UploadProps = {
     name: 'file',
@@ -47,4 +47,4 @@ const ImageUploader = (props: IImageUploaderProps) => {
   );
 };
 
-export default ImageUploader;
+export default ImageBatchUploader;
